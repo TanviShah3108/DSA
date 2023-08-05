@@ -63,3 +63,12 @@ For each word in the array:
 - The final count is 2, which represents the number of similar pairs of strings in the given array.
 
 - So, the output for the input ["aba", "aabb", "abcd", "bac", "aabc"] is 2.
+
+
+Note:
+
+In Java, an iterator is used to traverse a collection (like a set, list, etc.) sequentially. It provides two important methods:
+
+1. hasNext(): This method checks if the iterator has more elements to traverse in the collection. It returns true if there is at least one more element to be accessed using next(), and false otherwise.
+
+2. next(): This method retrieves the next element from the collection that the iterator is currently pointing to. It moves the iterator to the next element in the collection, making it ready to retrieve the subsequent element if available.

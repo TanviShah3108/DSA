@@ -1,0 +1,74 @@
+No: 2506 Count Pairs Of Similar Strings
+Link: https://leetcode.com/problems/count-pairs-of-similar-strings/
+
+Code: Java
+
+class Solution {
+    public int similarPairs(String[] words) {
+        
+        for(int i=0;i<words.length;i++){
+            String str=words[i];
+            
+            HashSet<Character> hs=new HashSet<>();
+            for(int j=0;j<str.length();j++){
+                hs.add(str.charAt(j));
+            }
+            
+            char arr[]=new char[hs.size()];
+            
+            Iterator<Character> itr=hs.iterator();
+            String temp=" ";
+            
+            while(itr.hasNext()){
+                temp = temp + Character.toString(itr.next());
+            }
+            words[i]=temp;
+        }
+        int count=0;
+        for(int i=0;i<words.length;i++){
+            for(int j=i+1;j<words.length;j++){
+                if(words[i].equals(words[j]))
+                    count++;
+            }
+        }
+        return count;
+    }
+}
+
+
+Explanation with Example:-
+
+Input: ["aba", "aabb", "abcd", "bac", "aabc"]
+
+For each word in the array:
+
+- Word "aba": The set contains 'a', 'b'. The word is replaced with "ab".
+- Word "aabb": The set contains 'a', 'b'. The word is replaced with "ab".
+- Word "abcd": The set contains 'a', 'b', 'c', 'd'. The word is replaced with "abcd".
+- Word "bac": The set contains 'b', 'a', 'c'. The word is replaced with "bac".
+- Word "aabc": The set contains 'a', 'b', 'c'. The word is replaced with "abc".
+
+- After this step, the words array becomes ["ab", "ab", "abcd", "bac", "abc"].
+
+- Next, we count the number of similar pairs. The nested loops compare each pair of words and check if they are equal. If they are equal, the count is incremented.
+
+- Comparing "ab" and "ab" -> Both are equal, count = 1.
+- Comparing "ab" and "abcd" -> Not equal.
+- Comparing "ab" and "bac" -> Not equal.
+- Comparing "ab" and "abc" -> Not equal.
+- Comparing "ab" and "ab" -> Both are equal, count = 2.
+- Comparing "abcd" and "bac" -> Not equal.
+- Comparing "abcd" and "abc" -> Not equal.
+- Comparing "bac" and "abc" -> Not equal.
+- The final count is 2, which represents the number of similar pairs of strings in the given array.
+
+- So, the output for the input ["aba", "aabb", "abcd", "bac", "aabc"] is 2.
+
+
+Note:
+
+In Java, an iterator is used to traverse a collection (like a set, list, etc.) sequentially. It provides two important methods:
+
+1. hasNext(): This method checks if the iterator has more elements to traverse in the collection. It returns true if there is at least one more element to be accessed using next(), and false otherwise.
+
+2. next(): This method retrieves the next element from the collection that the iterator is currently pointing to. It moves the iterator to the next element in the collection, making it ready to retrieve the subsequent element if available.

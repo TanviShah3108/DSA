@@ -1,0 +1,38 @@
+NO: 771. Jewels and Stones
+Link: https://leetcode.com/problems/jewels-and-stones/
+
+Code: Java
+class Solution {
+    public int numJewelsInStones(String jewels, String stones) {
+        HashSet<Character> hs=new HashSet<>();
+        int count=0;
+        for(int i=0;i<jewels.length();i++){
+            hs.add(jewels.charAt(i));
+        }
+        
+        for(int i=0;i<stones.length();i++){
+            if(!hs.contains(stones.charAt(i)))
+                count++;
+        }
+        
+        return stones.length()-count;
+    }
+}
+
+Explanation with example
+
+Input: jewels = "aA", stones = "aAAbbbb"
+
+1. The first loop creates a HashSet hs containing the characters from the jewels string. After this loop, hs contains {'a', 'A'}.
+2. count starts at 0.
+3. The second loop iterates through each character in the stones string.
+At index 0: 'a' is present in the HashSet hs, so !hs.contains(stones.charAt(0)) is false, and count remains 0.
+At index 1: 'A' is present in the HashSet hs, so !hs.contains(stones.charAt(1)) is false, and count remains 0.
+At index 2: 'A' is present in the HashSet hs, so !hs.contains(stones.charAt(2)) is false, and count remains 0.
+At index 3: 'b' is not present in the HashSet hs, so !hs.contains(stones.charAt(3)) is true, and count is incremented to 1.
+At index 4: 'b' is not present in the HashSet hs, so !hs.contains(stones.charAt(4)) is true, and count is incremented to 2.
+At index 5: 'b' is not present in the HashSet hs, so !hs.contains(stones.charAt(5)) is true, and count is incremented to 3.
+At index 6: 'b' is not present in the HashSet hs, so !hs.contains(stones.charAt(6)) is true, and count is incremented to 4.
+4. The method returns stones.length() - count, which is 7 - 4 = 3.
+
+Output: 3

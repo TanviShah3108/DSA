@@ -1,0 +1,59 @@
+No: 1684 Count the Number of Consistent Strings
+Link: https://leetcode.com/problems/count-the-number-of-consistent-strings/
+
+Code: Java
+
+class Solution {
+    public int countConsistentStrings(String allowed, String[] words) {
+        int count=0;
+        HashSet<Character> hs=new HashSet<>();
+        
+        for(int i=0;i<allowed.length();i++){
+            hs.add(allowed.charAt(i));
+        }
+        
+        for(int i=0;i<words.length;i++){
+           for(int j=0;j<words[i].length();j++){
+                if(!hs.contains(words[i].charAt(j))){
+                   count++;
+                   break;
+           }
+        }   
+    }
+        return words.length-count;
+    }
+}
+
+Explanation with Example
+
+Example 1:
+
+Input: allowed = "ab", words = ["ad", "bd", "aaab", "baa", "badab"]
+
+1. The allowed characters are 'a' and 'b', so the set will contain {'a', 'b'}.
+2. Count starts at 0.
+3. For each word in the array:
+Word "ad": The character 'd' is not in the set, so count is incremented to 1.
+Word "bd": The character 'd' is not in the set, so count is incremented to 2.
+Word "aaab": The characters 'a' and 'b' are in the set, so no increment.
+Word "baa": The characters 'b' and 'a' are in the set, so no increment.
+Word "badab": The character 'd' is not in the set, so count is incremented to 3.
+4. The final count is 3, so the method returns words.length - count = 5 - 3 = 2.
+Output: 2
+
+Example 2:
+
+Input: allowed = "abc", words = ["a", "b", "c", "ab", "ac", "bc", "abc"]
+
+1. The allowed characters are 'a', 'b', and 'c', so the set will contain {'a', 'b', 'c'}.
+2. Count starts at 0.
+3. For each word in the array:
+Word "a": The character 'a' is in the set, so no increment.
+Word "b": The character 'b' is in the set, so no increment.
+Word "c": The character 'c' is in the set, so no increment.
+Word "ab": The characters 'a' and 'b' are in the set, so no increment.
+Word "ac": The characters 'a' and 'c' are in the set, so no increment.
+Word "bc": The characters 'b' and 'c' are in the set, so no increment.
+Word "abc": The characters 'a', 'b', and 'c' are in the set, so no increment.
+4. The final count is 0, so the method returns words.length - count = 7 - 0 = 7.
+Output: 7
